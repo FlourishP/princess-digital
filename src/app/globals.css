@@ -1,0 +1,540 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&display=swap');
+
+:root {
+  --font-playfair: 'Playfair Display', serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+  --obsidian: #0A0A0A;
+  --obsidian-light: #1A1A1A;
+  --marble: #F5F5F5;
+  --gold: #FFD700;
+  --gold-dim: #B8860B;
+  /* Accent colors */
+  --accent-purple: #A855F7;
+  --accent-pink: #EC4899;
+  --accent-cyan: #22D3EE;
+  --accent-emerald: #10B981;
+  --accent-orange: #F97316;
+  /* Safe area insets for notched devices */
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-bottom: env(safe-area-inset-bottom);
+  --safe-area-left: env(safe-area-inset-left);
+  --safe-area-right: env(safe-area-inset-right);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  /* Better font rendering on mobile */
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--obsidian);
+  color: var(--marble);
+  font-family: var(--font-jetbrains);
+  overflow-x: hidden;
+  /* Mobile safe areas */
+  padding-top: var(--safe-area-top);
+  padding-bottom: var(--safe-area-bottom);
+  padding-left: var(--safe-area-left);
+  padding-right: var(--safe-area-right);
+  /* Minimum touch target size */
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Marble Overlay Effect */
+.marble-overlay {
+  position: relative;
+}
+
+.marble-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    /* Marble vein patterns */
+    linear-gradient(135deg, rgba(245,245,245,0.02) 0%, transparent 30%),
+    linear-gradient(225deg, rgba(245,245,245,0.015) 0%, transparent 40%),
+    linear-gradient(45deg, transparent 60%, rgba(245,245,245,0.02) 100%),
+    /* Subtle gold highlights */
+    radial-gradient(ellipse at 20% 30%, rgba(255,215,0,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(255,215,0,0.02) 0%, transparent 40%),
+    /* Main marble texture */
+    linear-gradient(180deg, rgba(255,255,255,0.01) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Greek Column Pattern */
+.column-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60' stroke='rgba(245,245,245,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 245, 245, 0.1);
+}
+
+.glass-gold {
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Stone Tablet Effect */
+.stone-tablet {
+  background: linear-gradient(145deg, rgba(26,26,26,0.9) 0%, rgba(10,10,10,0.95) 100%);
+  border: 1px solid rgba(245, 245, 245, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 -1px 0 rgba(0,0,0,0.3),
+    0 10px 40px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.stone-tablet::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(245,245,245,0.02) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Holographic Effect */
+.holographic {
+  background: linear-gradient(135deg, rgba(26,26,26,0.9) 0%, rgba(10,10,10,0.95) 100%);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.holographic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.1),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: holographic-shimmer 3s infinite;
+}
+
+@keyframes holographic-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Gold Glow */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+/* Text Gradient */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFD700 0%, #B8860B 50%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Accent color text utilities */
+.text-accent-purple {
+  color: var(--accent-purple);
+}
+
+.text-accent-pink {
+  color: var(--accent-pink);
+}
+
+.text-accent-cyan {
+  color: var(--accent-cyan);
+}
+
+.text-accent-emerald {
+  color: var(--accent-emerald);
+}
+
+.text-accent-orange {
+  color: var(--accent-orange);
+}
+
+/* Accent color background utilities */
+.bg-accent-purple {
+  background-color: var(--accent-purple);
+}
+
+.bg-accent-pink {
+  background-color: var(--accent-pink);
+}
+
+.bg-accent-cyan {
+  background-color: var(--accent-cyan);
+}
+
+.bg-accent-emerald {
+  background-color: var(--accent-emerald);
+}
+
+.bg-accent-orange {
+  background-color: var(--accent-orange);
+}
+
+/* Accent color border utilities */
+.border-accent-purple {
+  border-color: var(--accent-purple);
+}
+
+.border-accent-pink {
+  border-color: var(--accent-pink);
+}
+
+.border-accent-cyan {
+  border-color: var(--accent-cyan);
+}
+
+.border-accent-emerald {
+  border-color: var(--accent-emerald);
+}
+
+.border-accent-orange {
+  border-color: var(--accent-orange);
+}
+
+/* Oracle Input Styling */
+.oracle-input {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(245, 245, 245, 0.1);
+  color: var(--marble);
+  font-family: var(--font-jetbrains);
+  transition: all 0.3s ease;
+  /* Remove iOS zoom on focus */
+  font-size: 16px;
+}
+
+.oracle-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.oracle-input::placeholder {
+  color: rgba(245, 245, 245, 0.3);
+}
+
+/* Greek Border Pattern */
+.greek-border {
+  position: relative;
+}
+
+.greek-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 10px,
+    var(--gold) 10px,
+    var(--gold) 20px,
+    transparent 20px,
+    transparent 30px
+  );
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Particle Effect */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: particle-float 8s infinite;
+  opacity: 0.6;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Scrollbar Styling - Hidden on mobile */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gold-dim), var(--gold));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* Hide scrollbar on mobile */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+/* Selection */
+::selection {
+  background: rgba(255, 215, 0, 0.3);
+  color: var(--marble);
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Remove hover effects that don't work on touch */
+  .gold-glow-hover:hover {
+    box-shadow: none;
+  }
+  
+  .gold-glow-hover:active {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  }
+}
+
+/* Prevent text selection on UI elements */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Responsive breakpoints reference:
+   xxs: 320px (iPhone SE, small Android phones)
+   xs: 475px (larger phones)
+   sm: 640px (large phones, small tablets)
+   md: 768px (tablets)
+   lg: 1024px (laptops, large tablets)
+   xl: 1280px (desktops)
+*/
+
+/* Very small phone adjustments (320px-374px) */
+@media (max-width: 374px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .font-display {
+    font-size: 0.9em;
+  }
+  
+  /* Reduce padding for very small screens */
+  section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Small phones (375px-474px) */
+@media (min-width: 375px) and (max-width: 474px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Landscape phone orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .min-h-screen {
+    min-height: 100svh;
+  }
+}
+
+/* Dynamic viewport height for mobile browsers */
+@supports (height: 100dvh) {
+  .min-h-screen {
+    min-height: 100dvh;
+  }
+}
+
+/* Small viewport height */
+@supports (height: 100svh) {
+  .min-h-screen {
+    min-height: 100svh;
+  }
+}
+
+/* Large viewport height */
+@supports (height: 100lvh) {
+  .hero-full-height {
+    min-height: 100lvh;
+  }
+}
+
+/* Prevent iOS bounce scroll */
+@supports (-webkit-overflow-scrolling: touch) {
+  body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Improve tap highlight on mobile */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: rgba(255, 215, 0, 0.1);
+  }
+}
+
+/* Fix for iOS input zoom */
+@media screen and (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Safe area padding utilities */
+.safe-top {
+  padding-top: max(env(safe-area-inset-top), 16px);
+}
+
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 16px);
+}
+
+.safe-left {
+  padding-left: max(env(safe-area-inset-left), 16px);
+}
+
+.safe-right {
+  padding-right: max(env(safe-area-inset-right), 16px);
+}
+
+/* Touch-action for better scroll performance */
+.touch-pan-y {
+  touch-action: pan-y;
+}
+
+.touch-pan-x {
+  touch-action: pan-x;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .particle {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass,
+  .glass-gold {
+    background: rgba(0, 0, 0, 0.95);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .text-marble\/60,
+  .text-marble\/70,
+  .text-marble\/80 {
+    color: rgb(200, 200, 200);
+  }
+}
+
+/* Dark mode is default, but ensure proper rendering */
+@media (prefers-color-scheme: light) {
+  /* Keep dark theme regardless of system preference */
+  body {
+    background-color: var(--obsidian);
+    color: var(--marble);
+  }
+}
